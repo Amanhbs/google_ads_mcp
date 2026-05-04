@@ -42,6 +42,7 @@ if os.getenv("ADS_MCP_ENABLE_MUTATIONS", "false").lower() == "true":
           mutations.ad_group,
           mutations.ad,
           mutations.criterion,
+          mutations.asset_group,
       ]
   )
 

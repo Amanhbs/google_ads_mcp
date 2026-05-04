@@ -77,8 +77,6 @@ def _format_asset_row(row) -> dict:
     result["link_text"] = asset.sitelink_asset.link_text
     result["description1"] = asset.sitelink_asset.description1
     result["description2"] = asset.sitelink_asset.description2
-  elif asset_type == "BUSINESS_NAME":
-    result["business_name"] = asset.business_name_asset.business_name
   elif asset_type == "PROMOTION":
     result["promotion_target"] = asset.promotion_asset.promotion_target
 
@@ -90,7 +88,6 @@ def list_account_assets(
     customer_id: str,
     asset_type: str | None = None,
     limit: int = 200,
-    login_customer_id: str | None = None,
 ) -> dict:
   """Lists assets in the account's asset library.
 
@@ -105,7 +102,6 @@ def list_account_assets(
           PRICE, BUSINESS_NAME, BUSINESS_LOGO, LEAD_FORM, CALL, MOBILE_APP,
           HOTEL_CALLOUT, DISCOVERY_CAROUSEL_CARD. If None, returns all types.
       limit: Maximum assets to return (default 200, hard cap 1000).
-      login_customer_id: MCC account ID if customer is managed.
 
   Returns:
       Dict with:
@@ -125,7 +121,7 @@ def list_account_assets(
 
   limit = max(1, min(limit, 1000))
 
-  ads_client = get_ads_client(login_customer_id)
+  ads_client = get_ads_client()
   ga_service = ads_client.get_service("GoogleAdsService")
 
   query = f"""
@@ -148,7 +144,6 @@ def list_account_assets(
           asset.sitelink_asset.link_text,
           asset.sitelink_asset.description1,
           asset.sitelink_asset.description2,
-          asset.business_name_asset.business_name,
           asset.promotion_asset.promotion_target
       FROM asset
   """

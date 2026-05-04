@@ -16,6 +16,7 @@
 
 from ads_mcp.tools.mutations import ad
 from ads_mcp.tools.mutations import ad_group
+from ads_mcp.tools.mutations import asset_group
 from ads_mcp.tools.mutations import budget
 from ads_mcp.tools.mutations import campaign
 from ads_mcp.tools.mutations import common
@@ -24,6 +25,7 @@ from ads_mcp.tools.mutations import criterion
 __all__ = [
     "ad",
     "ad_group",
+    "asset_group",
     "budget",
     "campaign",
     "common",
