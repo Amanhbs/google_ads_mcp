@@ -20,6 +20,7 @@ import os
 from ads_mcp.coordinator import mcp_server
 from ads_mcp.scripts.generate_views import update_views_yaml
 from ads_mcp.tools import accounts
+from ads_mcp.tools import assets
 from ads_mcp.tools import docs
 from ads_mcp.tools import reporting
 from ads_mcp.tools._utils import get_ads_client
@@ -30,7 +31,7 @@ from fastmcp.server.auth.providers.google import GoogleTokenVerifier
 dotenv.load_dotenv()
 
 
-tools = [reporting, accounts, docs]
+tools = [reporting, accounts, assets, docs]
 
 if os.getenv("ADS_MCP_ENABLE_MUTATIONS", "false").lower() == "true":
   from ads_mcp.tools import mutations  # pylint: disable=ungrouped-imports
